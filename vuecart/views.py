@@ -9,4 +9,8 @@ def home(request):
     context={
         'products': products
     }
+    
+    p = Product.objects.first()
+    print(p.image)         # shows path or empty
+    print(p.image.url)
     return render(request, 'home.html', context)
