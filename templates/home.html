@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+
+
 {% load static %}
 
 
@@ -24,14 +26,16 @@
 	<h3 class="section-title">Popular products</h3>
 </header><!-- sect-heading -->
 
-	
 <div class="row">
 	{% for product in products %}
 	<div class="col-md-3">
 		<div class="card card-product-grid">
 			<a href="./product-detail.html" class="img-wrap"> 
-				<img src="{{ product.image.url }}" alt="{{ product.product_name }}">
-
+				{% if product.image %}
+					<img src="{{ product.image.url }}" alt="{{ product.product_name }}">
+				{% else %}
+					<img src="{% static 'images/default.jpg' %}" alt="No image available">
+				{% endif %}
 			</a>
 			<figcaption class="info-wrap">
 				<a href="./product-detail.html" class="title">{{ product.product_name }}</a>
@@ -41,6 +45,7 @@
 	</div> <!-- col.// -->
 	{% endfor %}
 </div> <!-- row.// -->
+
 </div><!-- container // -->
 </section>
 <!-- ========================= SECTION  END// ========================= -->
